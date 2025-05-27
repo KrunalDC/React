@@ -1,22 +1,26 @@
 import "./App.css";
-
+import { Complanets } from "./Planet";
 function App() {
+  const planets = [
+    { name: "Mars", isGasPlanet: false },
+    { name: "Earth", isGasPlanet: false },
+    { name: "Jupiter", isGasPlanet: true },
+    { name: "Venus", isGasPlanet: false },
+    { name: "Neptune", isGasPlanet: true },
+    { name: "Uranus", isGasPlanet: true },
+  ];
   return (
     <div className="App">
-      <Job salary={90000} position="Senior SDE" company="Amazon" />
-      <Job salary={80000} position="Junior developer" company="Google" />
-      <Job salary={70000} position="QA" company="Microsoft" />
+      {planets.map((planet, key) => {
+        return (
+          <Complanets
+            key={key}
+            name={planet.name}
+            isGasPlanet={planet.isGasPlanet}
+          />
+        );
+      })}
     </div>
   );
 }
-
-const Job = (props) => {
-  return (
-    <div>
-      <h1>{props.position}</h1>
-      <h2>{props.salary}</h2>
-      <h3>{props.company}</h3>
-    </div>
-  );
-};
 export default App;
