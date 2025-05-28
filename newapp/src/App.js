@@ -1,25 +1,23 @@
+import { useState } from "react";
 import "./App.css";
-import { Complanets } from "./Planet";
+
 function App() {
-  const planets = [
-    { name: "Mars", isGasPlanet: false },
-    { name: "Earth", isGasPlanet: false },
-    { name: "Jupiter", isGasPlanet: true },
-    { name: "Venus", isGasPlanet: false },
-    { name: "Neptune", isGasPlanet: true },
-    { name: "Uranus", isGasPlanet: true },
-  ];
+  let [changeNumber, setChangeNumber] = useState(0);
+  const increaseNumber = () => {
+    setChangeNumber(changeNumber + 1);
+  };
+  const decreaseNumber = () => {
+    setChangeNumber(changeNumber - 1);
+  };
+  const setToZero = () => {
+    setChangeNumber(0);
+  };
   return (
     <div className="App">
-      {planets.map((planet, key) => {
-        return (
-          <Complanets
-            key={key}
-            name={planet.name}
-            isGasPlanet={planet.isGasPlanet}
-          />
-        );
-      })}
+      <button onClick={increaseNumber}>Increase</button>
+      <button onClick={decreaseNumber}>Decrease</button>
+      <button onClick={setToZero}>Set to Zero</button>
+      {changeNumber}
     </div>
   );
 }
