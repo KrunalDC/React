@@ -1,26 +1,22 @@
-import { useState } from "react";
 import "./App.css";
-import Axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home } from "./Pages/Home";
+import { Menu } from "./Pages/Menu";
+import { Contact } from "./Pages/Contact";
+import { Navbar } from "./Pages/Navbar";
 
 function App() {
-  const [displayData, setDisplayData] = useState("");
-  const callApi = (url) => {
-    Axios.get(`https://excuser-three.vercel.app/v1/excuse/${url}/`).then(
-      (res) => {
-        setDisplayData(res.data[0].excuse);
-      }
-    );
-  };
-
   return (
     <div className="App">
-      <div>
-        <h1>Generate An Excuse</h1>
-        <button onClick={() => callApi("party")}>Party</button>
-        <button onClick={() => callApi("family")}>Family</button>
-        <button onClick={() => callApi("office")}>Office</button>
-        <p>{displayData}</p>
-      </div>
+      <Router>
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/" element={<Home></Home>}></Route>
+          <Route path="/menu" element={<Menu></Menu>}></Route>
+          <Route path="/contact" element={<Contact></Contact>}></Route>
+          <Route path="*" element={<Contact></Contact>}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
