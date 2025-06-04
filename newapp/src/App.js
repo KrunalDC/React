@@ -4,15 +4,19 @@ import { Home } from "./Pages/Home";
 import { Profile } from "./Pages/Profile";
 import { Contact } from "./Pages/Contact";
 import { Navbar } from "./Pages/Navbar";
-import { createContext, useState } from "react";
-
-export const AppContext = createContext();
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
-  const [username, setUsername] = useState("Krunal Test Code");
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
     <div className="App">
-      <AppContext.Provider value={{ username, setUsername }}>
+      <QueryClientProvider client={client}>
         <Router>
           <Navbar></Navbar>
           <Routes>
@@ -22,7 +26,7 @@ function App() {
             <Route path="*" element={<h1>Error Page</h1>}></Route>
           </Routes>
         </Router>
-      </AppContext.Provider>
+      </QueryClientProvider>
     </div>
   );
 }
