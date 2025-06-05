@@ -1,10 +1,14 @@
-import { Form } from "./Pages/Form";
 import "./App.css";
+import { useCounter } from "./useCounter";
 
 function App() {
+  const { number, increaseValue, decreaseValue, resetVal } = useCounter();
   return (
     <div className="App">
-      <Form></Form>
+      {number}
+      <button onClick={increaseValue}>Increase</button>
+      <button onClick={decreaseValue}>Decrease</button>
+      <button onClick={resetVal}>Reset</button>
     </div>
   );
 }
